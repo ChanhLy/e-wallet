@@ -1,9 +1,9 @@
-import { PGlite } from '@electric-sql/pglite';
-import { drizzle } from 'drizzle-orm/pglite';
-import * as schema from './schema';
-// import { drizzle } from 'drizzle-orm/node-postgres';
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
+import { schema } from "./schema";
 
-// export const client = new PGlite(process.env.DATABASE_URL!);
-export const client = new PGlite("");
+export const client = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
 export const db = drizzle({ client, schema });
-// export const database = drizzle(process.env.DATABASE_URL!);
